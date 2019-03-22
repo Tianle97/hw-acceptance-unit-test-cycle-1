@@ -12,6 +12,15 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
+    
+    when /^the home\s?page$/
+      '/'
+    when /^the ( *) page for "(.*)"/
+      movie = Movie.find_by_title($1)
+      case $1
+      when "detailed" then movie_path(movie.id)
+      when "edit" then edit_movie_path(movie.id)
+    end
 
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
 
@@ -28,6 +37,9 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    
+    when /^the details page for "(.*)"$/i  # I am on the details page for "Star Wars"
+      movie_path(Movie.find_by_title($1))
 
     else
       begin
