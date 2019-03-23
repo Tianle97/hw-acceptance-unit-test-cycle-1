@@ -24,16 +24,18 @@ module NavigationHelpers
 
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
 
+    
     when /^the edit page for "(.*)"$/i # I go to the edit page for "Alien"
-      edit_movie_path(Movie.find_by_title($1))      
+      edit_movie_path(Movie.find_by_title($1).id)      
 
     # I am on the details page for "Star Wars"
     when /^the details page "([^"]+)"$/   
        movie_path(Movie.find_by_title($1).id)
 
 
-    when /^the Similar Movies page for "([^"]+)"$/
-      movie_similar_path(Movie.find_by_title($1).id)
+    when /^the Similar Movies page for "(.*)"$/i
+      id = Movie.find_by_title($1).id
+      search_directors_path(id)
 
     when /^the similar movies page for "(.*)"$/i  # I am on the similar movies page for "Star Wars"
        search_directors_path(Movie.find_by_title($1))  
