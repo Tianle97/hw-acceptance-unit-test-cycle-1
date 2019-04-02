@@ -1,5 +1,3 @@
-#  This file is app/views/movies/similar.html.haml
-
 %table#movies
   %thead
     %tr
@@ -10,10 +8,7 @@
   %tbody
     - @similar_movies.each do |movie|
       %tr
-        %td= movie.title
+        %td= movie.title 
         %td= movie.rating
         %td= movie.release_date
-        %td= movie.director
-= link_to 'Back to movie list', movies_path 
-= link_to 'Back', :back 
-  
+        %td= movie.director 

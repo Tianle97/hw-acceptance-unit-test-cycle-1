@@ -25,6 +25,5 @@ Then /I should see all the movies/ do
 end
 
 Then(/^the director of "([^"]*)" should be "([^"]*)"$/) do |title, director|
-  @movie=Movie.where(title: title).first;
-  expect(@movie.director).to eql director
+ Movie.find_by_title(title).director == director
 end  
